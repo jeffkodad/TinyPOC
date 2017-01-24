@@ -1,5 +1,6 @@
 ﻿CREATE TABLE [dbo].[Letter]
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
-    [Body] NVARCHAR(1000) NOT NULL
+    [Body] NVARCHAR(1000) NULL, 
+    [Title] NVARCHAR(500) NULL
 )

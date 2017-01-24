@@ -9,12 +9,30 @@
 
 @using (Html.BeginForm("CreateTemplate", "Home", FormMethod.Post))
 {
-    
+    <div class="form-group">
+        @Html.LabelFor(m => m.Title)
+        @Html.TextBoxFor(m => m.Title, new {@class = "form-control", Placeholder = "Template Title"})
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Body)
+        @Html.TextAreaFor(m => m.Body, new { @class = "form-control email-body tinymce-area", id = "emailBody" })
+        @Html.ValidationMessageFor(m => m.Body, string.Empty, new { @class = "text-danger" })
+    </div>
+    <input type="submit" value="Submit"/>
 }
 
 
-<div class="form-group" hidden="hidden">
-    <h2 for="emailBody" class="h4">Email Contents</h2>
-    @Html.TextAreaFor(m => m.Body, new { @class = "form-control email-body tinymce-area", id = "emailBody" })
-    @Html.ValidationMessageFor(m => m.Body, string.Empty, new { @class = "text-danger" })
-</div>
+<script>
+    tinymce.init({
+        selector: 'textarea',
+        height: 500,
+        menubar: false,
+        plugins: [
+          'advlist autolink lists link image charmap print preview anchor',
+          'searchreplace visualblocks code fullscreen',
+          'insertdatetime media table contextmenu paste code'
+        ],
+        toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+        content_css: '//www.tinymce.com/css/codepen.min.css'
+    });
+</script>

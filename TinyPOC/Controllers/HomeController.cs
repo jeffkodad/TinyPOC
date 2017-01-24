@@ -26,25 +26,42 @@ namespace TinyPOC.Controllers
 
         public ActionResult CreateTemplate()
         {
-            var model = new Template();
-            return View(model);
+            return View(new Template());
         }
 
         [HttpPost]
         public ActionResult CreateTemplate(Template template)
         {
-            
+            if (!ModelState.IsValid)
+            {
+                return View(template);
+            }
+
+            var res = TinyAccessor.AddTemplate(template);
+
             return RedirectToAction("Index");
         }
 
         public ActionResult SelectTemplate()
         {
-            return View();
+            var model = new SelectTemplateViewModel
+            {
+                Templates = TinyAccessor.GetTemplates()
+            };
+
+            return View(model);
         }
 
         public ActionResult CreateLetter(int templateId)
         {
-            return View();
+            var model = new CreateLetterViewModel(TinyAccessor.GetTemplateById(templateId));
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult CreateLetter(CreateLetterViewModel model)
+        {
+            return RedirectToAction("Index");
         }
 
         public ActionResult SelectLetter()

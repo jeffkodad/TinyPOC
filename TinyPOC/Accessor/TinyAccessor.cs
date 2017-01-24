@@ -10,9 +10,20 @@ namespace TinyPOC.Accessor
     {
         internal TinyPOCDbContext TinyPOCDbContextInstance { get; set; }
 
-        public Template GetTemplate(int templateId)
+        public List<Template> GetTemplates()
         {
-            return new Template();
+            using (var context = CreateTinyPocDbContext())
+            {
+                return context.Templates.ToList();
+            }
+        }
+
+        public Template GetTemplateById(int templateId)
+        {
+            using (var context = CreateTinyPocDbContext())
+            {
+                return context.Templates.FirstOrDefault(x => x.Id == templateId);
+            }
         }
 
         public Template AddTemplate(Template template)
@@ -30,14 +41,35 @@ namespace TinyPOC.Accessor
             return template;
         }
 
+        public List<Letter> GetLetters()
+        {
+            using (var context = CreateTinyPocDbContext())
+            {
+                return context.Letters.ToList();
+            }
+        }
+
         public Letter GetLetter(int letterId)
         {
+            using (var context = CreateTinyPocDbContext())
+            {
+                return context.Letters.FirstOrDefault(x => x.Id == letterId);
+            }
             return new Letter();
         }
 
         public Letter AddLetter(Letter letter)
         {
-            return new Letter();
+            using (var context = CreateTinyPocDbContext())
+            {
+                var dbLetter = context.Letters.FirstOrDefault(x => x.Id == letter.Id);
+                if (dbLetter == null)
+                {
+                    context.Letters.Add(letter);
+                }
+                context.SaveChanges();
+            }
+            return letter;
         }
 
         internal TinyPOCDbContext CreateTinyPocDbContext()

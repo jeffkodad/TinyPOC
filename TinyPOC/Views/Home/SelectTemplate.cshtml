@@ -1,8 +1,13 @@
-﻿
+﻿@model TinyPOC.Models.SelectTemplateViewModel
+
 @{
-    ViewBag.Title = "SelectTemplate";
+    ViewBag.Title = "Create Letter";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>SelectTemplate</h2>
+<h2>Select Template</h2>
 
+@foreach (var template in Model.Templates)
+{
+    <p>@Html.ActionLink(template.Title, "CreateLetter", "Home", new { templateId = template.Id }, null)</p>
+}

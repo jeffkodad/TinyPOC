@@ -162,7 +162,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CreateLetterViewModel.cs" />
     <Compile Include="Models\Letter.cs" />
+    <Compile Include="Models\SelectTemplateViewModel.cs" />
     <Compile Include="Models\Template.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
