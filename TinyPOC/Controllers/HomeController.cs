@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using Newtonsoft.Json;
 using TinyPOC.Accessor;
 using TinyPOC.Models;
 
@@ -61,17 +62,29 @@ namespace TinyPOC.Controllers
         [HttpPost]
         public ActionResult CreateLetter(CreateLetterViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var res = TinyAccessor.AddLetter(model.Letter);
+
             return RedirectToAction("Index");
         }
 
         public ActionResult SelectLetter()
         {
-            return View();
+            var model = new SelectLetterViewModel
+            {
+                Letters = TinyAccessor.GetLetters()
+            };
+            return View(model);
         }
 
         public ActionResult ViewLetter(int letterId)
         {
-            return View();
+            var model = TinyAccessor.GetLetter(letterId);
+            return View(model);
         }
         
     }

@@ -61,6 +61,6 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Template.sql" />
-    <Build Include="Tables\Letter.sql" />
+    <Build Include="Tables\Letters.sql" />
   </ItemGroup>
 </Project>

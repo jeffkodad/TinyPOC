@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Letter]
+﻿CREATE TABLE [dbo].[Letters]
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
     [Body] NVARCHAR(1000) NULL, 

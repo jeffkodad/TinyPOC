@@ -1,8 +1,12 @@
-﻿
+﻿@model TinyPOC.Models.SelectLetterViewModel
 @{
     ViewBag.Title = "SelectLetter";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>SelectLetter</h2>
+<h2>Select Letter</h2>
 
+@foreach (var letter in Model.Letters)
+{
+    <p>@Html.ActionLink(letter.Title, "ViewLetter", "Home", new { letterId = letter.Id}, null)</p>
+}

@@ -14,7 +14,7 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Letter.Body)
-        @Html.TextAreaFor(m => m.Letter.Body, new { @class = "form-control email-body tinymce-area", id = "emailBody" })
+        @Html.TextAreaFor(m => m.Letter.Body, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Letter.Body, string.Empty, new { @class = "text-danger" })
     </div>
     <input type="submit" value="Submit" />
@@ -24,6 +24,7 @@
 <script>
     tinymce.init({
         selector: 'textarea',
+        format: 'json',
         height: 500,
         menubar: false,
         plugins: [
