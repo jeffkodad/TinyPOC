@@ -1,0 +1,20 @@
+﻿@model TinyPOC.Models.Template
+
+@{
+    ViewBag.Title = "Create Template";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("CreateTemplate", "Home", FormMethod.Post))
+{
+    
+}
+
+
+<div class="form-group" hidden="hidden">
+    <h2 for="emailBody" class="h4">Email Contents</h2>
+    @Html.TextAreaFor(m => m.Body, new { @class = "form-control email-body tinymce-area", id = "emailBody" })
+    @Html.ValidationMessageFor(m => m.Body, string.Empty, new { @class = "text-danger" })
+</div>

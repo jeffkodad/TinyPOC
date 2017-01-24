@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[Templates]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Body] NVARCHAR(1000) NULL, 
+    [Title] NVARCHAR(500) NULL
+)
